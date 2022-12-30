@@ -17,6 +17,17 @@ aws_services.insert(5, 'Cloud9')
 print(aws_services)
 print(len(aws_services))
 
+# 4) Remove two services from the list by name and/or index
+del aws_services[5]
+print(aws_services)
+
+aws_services.remove('Python')
+print(aws_services)
+
+# 5) Print the new list and new length of the list
+print(aws_services)
+print(len(aws_services))
+
 
 
 
