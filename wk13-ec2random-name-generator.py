@@ -6,22 +6,48 @@ import sys
 # 2. Allow the user to input the name of their department that is used in the unique name.
 # 3. Generate random characters and numbers that will be included in the unique name.
 
-def generate_string(names, department):
-  name = []
-  for i in range(names):
-    name = department + '-'
-    for t in range(6):
-      name += random.choice(string.ascii_letters + string.digits)
-    names.append(name)
-  return names
+#1 Create Function
+def generate_string(size=6, string=string.ascii_letters + string.digits):    
+    return ''.join(random.choice(string) for _ in range(size))
+    
+department = input("Please select Department: Accounting FinOps, Marketing: ")  
 
-# Run Function
-names = int(input("Please select the number of EC2 names you want: "))
-department = input("Please select your department name: ")
+for _ in department:
 
-names = generate_string(names, department)
-for name in names:
-  print(name)
-  
+    if department == "Marketing" or department.lower() == "marketing" :
+        print("Success!")
+        #print ("Marketing")
+        break
 
+    elif department == "Accounting" or department.lower() == "accounting" :
+        print("Success")
+        #print("Accounting")
+        break
 
+    elif department == "FinOps" or department.lower() == "finops" :
+        print("Success!")
+        #print("FinOps")
+        break
+
+    else:
+        print("Error: Invalid entry. Please ensure correct department is selected.")
+        raise SystemExit
+        sys.exit()    
+    
+#2 Configure for number of EC2 instances requested
+number = int(input("Enter the number of EC2 instances you need: ")) 
+
+if number < 0:    
+    print("Please select a positive number: ") 
+elif number > 0:    
+    print("Success!")
+    
+print()
+print("--------------------------------")
+print("EC2 Instance Names")
+print("--------------------------------")
+print() 
+for _ in range(1, number + 1):    
+    random_name = department    
+    EC2_random_name = random_name + "-" + generate_string()
+    print("Your EC2 Instance's random name is : ", EC2_random_name)    
